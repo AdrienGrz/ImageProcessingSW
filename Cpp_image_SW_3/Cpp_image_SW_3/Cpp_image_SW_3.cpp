@@ -5,15 +5,17 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <iostream>
+#include <gtest/gtest.h>
 #include "lowPassFilterLibrary.h"
+#include "highPassFilterLibrary.h"
 
 using namespace std;
 using namespace cv;
 
 
-int main()
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello World!\n"; 
+    cout << "Hello World!\n"; 
 
 
 	Mat image = imread("daft_punk_puplFiction.png");
@@ -23,27 +25,11 @@ int main()
 	waitKey(3000);			// display the output for 3 sec
 	destroyWindow(windowName);
 
-	// test the blur image function
-	Mat imgOut;
-	Mat src = imread("noisy_Elaine_image.png");
-	cvtColor(src, imgOut, CV_BGR2GRAY);
-
-	String srcTitle = "grayscale";
-	namedWindow(srcTitle);
-	imshow(srcTitle, imgOut);
-	waitKey(3000); // display the output for 3 sec
-	
-	int order = 21;
-	averageBlur(imgOut,order);
-
-	String outputTitle = "average blur with order " + order;
-	imshow(outputTitle, imgOut);
-	waitKey(3000);	// display the output for 3 sec
-	destroyWindow(windowName);
-	destroyAllWindows;
-
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 
 	return 0;
+
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
