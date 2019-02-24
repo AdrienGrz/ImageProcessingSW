@@ -9,9 +9,9 @@ using namespace std;
 
 // Apply an averaging to the image as a low pass filter
 // with a kernel of size (order, order)
-void averageBlur(Mat imgTest, int order)
+void averageBlur(Mat &imgTest,const int order)
 {
-	static int ordersList[10] = {3,5,7,9,11,13,15,17,19,21};
+	const static int ordersList[10] = {3,5,7,9,11,13,15,17,19,21};
 	Mat imgOutput;
 
 	try {
@@ -28,9 +28,9 @@ void averageBlur(Mat imgTest, int order)
 
 // Apply an gaussian blur to the image as a low pass filter
 // with a kernel of size (order, order)
-void gaussianFilter(cv::Mat imgTest, int order)
+void gaussianFilter(cv::Mat &imgTest,const int order)
 {
-	static int ordersList[10] = { 3,5,7,9,11,13,15,17,19,21 };
+	const static int ordersList[10] = { 3,5,7,9,11,13,15,17,19,21 };
 	Mat imgOutput;
 
 	try {
@@ -46,16 +46,16 @@ void gaussianFilter(cv::Mat imgTest, int order)
 
 // apply the non-linear median filter on the image
 // with the kernel size order
-void medianFilter(cv::Mat imgTest, int order)
+void medianFilter(cv::Mat &imgTest,const int order)
 {
 	try{
-		medianBlur(imgTest, imgTest, order);
+		Mat imgOut = imgTest;
+		medianBlur(imgTest, imgOut, order);
+		imgTest = imgOut;
 	}
 	catch (const exception& e) {
 		cout << e.what();
 	}
 }
-
-
 
 ;
