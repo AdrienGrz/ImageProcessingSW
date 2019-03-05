@@ -2,24 +2,51 @@
 #include "pch.h"
 #include <opencv2/opencv.hpp>
 #include <string>
+#include "stdio.h"
 #include <iostream>
-//#include <boost/filesystem.hpp>
+#include <boost/filesystem.hpp>
 #include <gtest/gtest.h>
 #include "lowPassFilterLibrary.h"
 //#include "highPassFilterLibrary.h"
 
 using namespace std;
 using namespace cv;
+namespace fs = boost::filesystem;
 
+// global variables
 const int windowTimer = 10000; // [ms]
+const fs::path project_path = fs::current_path();
+const string project_dir = fs::current_path().string();
+
+
 
 int main(int argc, char* argv[])
 {
-    cout << "Hello World!\n"; 
+	cout << "Hello World!\n";
 
+	//use relative path
+	fs::path relative_img_path = "Cpp_image_SW_3/images_test_input";
+	// std::string  input_img_dir = 
+	const fs::path input_img_dir = fs::absolute(relative_img_path, project_path);
+	cout << "img input path is " << input_img_dir.string() << endl;
+	
 
 	// read test image
-	Mat image = imread("Vancouver.jpg");
+	fs::path file = "Vancouver.jpg";
+	fs::path imageVancouveur = input_img_dir / file;
+	//cout << "vancouver is at the path" << endl;
+	//cout << imageVancouveur.string() << endl;
+
+
+	cv::String imageNameCV = cv::String(imageVancouveur.string());
+	cout << "image Name is " << imageNameCV << endl;
+
+	String imageName = "C:\\Users\\Adrien\\source\\repos\\Cpp_Image_SW_2\\ImageProcessingSW\\Cpp_image_SW_3\\Cpp_image_SW_3\\images_test_input\\Vancouver.jpg";
+	Mat image = imread(imageName, CV_64F);
+	
+	int height = image.rows;
+	int width = image.cols;
+	cout << "the test image has the dimension (height,width) = (" << height << "," << width << ")" << endl;
 	String windowName = "test image";
 	namedWindow(windowName);
 	imshow(windowName, image);
@@ -64,7 +91,16 @@ int main(int argc, char* argv[])
 
 }
 
+/*
+WARNING : this getcwd call is deprecated
 
+std::string get_working_path()
+{
+	const int MAXPATHLEN = 1000;
+	char temp[MAXPATHLEN];
+	return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+}
+*/
 
 /*
 // get current working directory
