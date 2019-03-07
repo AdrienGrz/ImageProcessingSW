@@ -7,7 +7,7 @@
 #include <boost/filesystem.hpp>
 #include <gtest/gtest.h>
 #include "lowPassFilterLibrary.h"
-//#include "highPassFilterLibrary.h"
+#include "highPassFilterLibrary.h"
 
 using namespace std;
 using namespace cv;
@@ -84,6 +84,17 @@ int main(int argc, char* argv[])
 	namedWindow(windowNameMedian);
 	imshow(windowNameMedian, imgTestMedian);
 
+	/********************* high pass functio test ******************/
+
+	// test prewitt x gradient
+	Mat imgTestPrewitt_x;
+	cvtColor(image, imgTestPrewitt_x, CV_BGR2GRAY);
+
+	Mat imgOutputPrewitt_x = prewitt_x_Filter(imgTestPrewitt_x);
+
+	String windowNamePrewitt_x = "Prewitt gradient in x direction image output";
+	namedWindow(windowNamePrewitt_x);
+	imshow(windowNamePrewitt_x, imgOutputPrewitt_x);
 
 	waitKey(0);			// display the output 
 	destroyAllWindows();
@@ -92,20 +103,9 @@ int main(int argc, char* argv[])
 }
 
 /*
-WARNING : this getcwd call is deprecated
 
-std::string get_working_path()
-{
-	const int MAXPATHLEN = 1000;
-	char temp[MAXPATHLEN];
-	return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
-}
-*/
 
 /*
-// get current working directory
-std::string cwd = boost::filesystem::current_path().generic_string();
-String input_images_path = cwd + "images_test_input";
 
 vector<String> fn;
 glob(input_images_path, fn, true);
@@ -114,15 +114,6 @@ for (size_t i = 0; i < fn.size(); i++)
 {
 	image = imread(fn[i]);
 }
-
-//
-
-// Mat image = imread("daft_punk_puplFiction.png");
-String windowName = "test image";
-namedWindow(windowName);
-imshow(windowName, image);
-waitKey(3000);			// display the output for 3 sec
-destroyWindow(windowName);
 
 /*
 testing::InitGoogleTest(&argc, argv);

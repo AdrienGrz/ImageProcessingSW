@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
+
 // apply derivative x filter with a Prewitt kernel
 // the size of the kernel is order
 Mat prewitt_x_Filter(cv::Mat imgTest)
@@ -19,9 +20,8 @@ Mat prewitt_x_Filter(cv::Mat imgTest)
 	}	
 }
 
+/*
 
-// apply dérivative y filter with a Prewitt kernel
-// the size of the kernel is order
 Mat prewitt_y_Filter(cv::Mat imgTest)
 {
 	try {
@@ -82,3 +82,4 @@ Mat norm2_of_sobel(cv::Mat imgTest)
 	}
 }
 
+*/
