@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	cout << "image Name is " << imageNameCV << endl;
 
 	String imageName = "C:\\Users\\Adrien\\source\\repos\\Cpp_Image_SW_2\\ImageProcessingSW\\Cpp_image_SW_3\\Cpp_image_SW_3\\images_test_input\\Vancouver.jpg";
-	Mat image = imread(imageName, CV_64F);
+	Mat image = imread(imageName, CV_32F);
 	
 	int height = image.rows;
 	int width = image.cols;

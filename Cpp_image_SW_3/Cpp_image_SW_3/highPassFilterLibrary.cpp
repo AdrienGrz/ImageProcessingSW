@@ -3,26 +3,26 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
-// apply dérivative x filter with a Prewitt kernel
+// apply derivative x filter with a Prewitt kernel
 // the size of the kernel is order
-void prewitt_x_Filter(cv::Mat imgTest, cv::Mat prewitt_x_output, int order)
+Mat prewitt_x_Filter(cv::Mat imgTest)
 {
 	// normalized prewitt x kenel
-	float prewitt_x_kernel[3][3] = { {-1,0,1},
-									{-1,0,1},
-									{-1,0,1} };
+	const static cv::Mat kernel_prewitt_x = (cv::Mat_<double>(3, 3,CV_32F) << -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 1.0f);
 	try {
-
+		cv::Mat prewitt_x_output;
+		cv::filter2D(imgTest, prewitt_x_output, CV_32F, kernel_prewitt_x, Point(-1,-1),BORDER_REPLICATE);
+		return prewitt_x_output;
 	}
 	catch (const std::exception &e) {
 		std::cout << e.what();
-	}
+	}	
 }
 
 
 // apply dérivative y filter with a Prewitt kernel
 // the size of the kernel is order
-void prewitt_y_Filter(cv::Mat imgTest, cv::Mat prewitt_y_output, int order)
+Mat prewitt_y_Filter(cv::Mat imgTest)
 {
 	try {
 
@@ -32,7 +32,7 @@ void prewitt_y_Filter(cv::Mat imgTest, cv::Mat prewitt_y_output, int order)
 	}
 }
 
-void norm2_of_gradient(cv::Mat img_d_X, cv::Mat img_d_Y, cv::Mat norm2_output)
+Mat norm2_of_gradient(cv::Mat img_d_X, cv::Mat img_d_Y, cv::Mat norm2_output)
 {
 	try {
 
@@ -42,7 +42,7 @@ void norm2_of_gradient(cv::Mat img_d_X, cv::Mat img_d_Y, cv::Mat norm2_output)
 	}
 }
 
-void nomr2_of_prewitt(cv::Mat imgTest, int order)
+Mat nomr2_of_prewitt(cv::Mat imgTest)
 {
 	try {
 
@@ -52,7 +52,7 @@ void nomr2_of_prewitt(cv::Mat imgTest, int order)
 	}
 }
 
-void sobel_x_Filter(cv::Mat imgTest, cv::Mat sobel_x_output, int order)
+Mat sobel_x_Filter(cv::Mat imgTest)
 {
 	try {
 
@@ -62,7 +62,7 @@ void sobel_x_Filter(cv::Mat imgTest, cv::Mat sobel_x_output, int order)
 	}
 }
 
-void sobel_y_Filter(cv::Mat imgTest, cv::Mat sobel_y_output, int order)
+Mat sobel_y_Filter(cv::Mat imgTest)
 {
 	try {
 
@@ -72,7 +72,7 @@ void sobel_y_Filter(cv::Mat imgTest, cv::Mat sobel_y_output, int order)
 	}
 }
 
-void norm2_of_sobel(cv::Mat imgTest, int order)
+Mat norm2_of_sobel(cv::Mat imgTest)
 {
 	try {
 

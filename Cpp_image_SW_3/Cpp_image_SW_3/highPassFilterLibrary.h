@@ -4,18 +4,20 @@
 
 #include <opencv2/opencv.hpp>
 
-void prewitt_x_Filter(cv::Mat imgTest, cv::Mat prewitt_x_output, int order);
+using namespace cv;
 
-void prewitt_y_Filter(cv::Mat imgTest, cv::Mat prewitt_y_output,int order);
+Mat prewitt_x_Filter(cv::Mat imgTest);
 
-void norm2_of_gradient(cv::Mat img_d_X, cv::Mat img_d_Y, cv::Mat norm2_output);
+Mat prewitt_y_Filter(cv::Mat imgTest);
 
-void nomr2_of_prewitt(cv::Mat imgTest, int order);
+Mat norm2_of_gradient(cv::Mat img_d_X, cv::Mat img_d_Y, cv::Mat norm2_output);
 
-void sobel_x_Filter(cv::Mat imgTest, cv::Mat sobel_x_output, int order);
+Mat nomr2_of_prewitt(cv::Mat imgTest);
 
-void sobel_y_Filter(cv::Mat imgTest, cv::Mat sobel_y_output, int order);
+Mat sobel_x_Filter(cv::Mat imgTest);
 
-void norm2_of_sobel(cv::Mat imgTest, int order);
+Mat sobel_y_Filter(cv::Mat imgTest);
+
+Mat norm2_of_sobel(cv::Mat imgTest);
 
 #endif // !HIGHPASSFILTERLIBRAR_H
