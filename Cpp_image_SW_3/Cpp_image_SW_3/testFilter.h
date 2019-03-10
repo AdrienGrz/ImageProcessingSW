@@ -16,7 +16,7 @@ using namespace cv;
 class testFilter
 {
 public:
-	testFilter(string path, string img_file_name,string filter, int order);
+	testFilter(string input_path, string img_file_name,string filter, int order);
 	~testFilter();
 	void processTestFilter();
 	// getters
@@ -26,13 +26,13 @@ public:
 	void set_img_input(string path);
 	void set_filter_index(unsigned int index);
 	void set_kernel_size(int order);
+	void set_output_path(string output_path);
 	//void set_input_path();
-	//void set_output_path();
 
 
 private:
 	//string input_path;
-	//string output_path;
+	string output_path;
 	int kernel_size;
 	Mat img_input;
 	vector<string> filter_lists;

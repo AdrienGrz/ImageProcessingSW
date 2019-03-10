@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "gtest/gtest.h"
+#include <opencv2/opencv.hpp>
 #include "../Cpp_image_SW_3/testFilter.h"
 #include "../Cpp_image_SW_3/highPassFilterLibrary.h"
 #include "../Cpp_image_SW_3/lowPassFilterLibrary.h"
